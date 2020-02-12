@@ -35,6 +35,10 @@
                     <input type="text" class="form-control mother_name" name="mother_name">
                 </div>
                 <div class="form-group">
+                    <label>Phone Number:</label>
+                    <input type="number" class="form-control phone_number" name="phone_number">
+                </div>
+                <div class="form-group">
                     <label>Institute:</label>
                     <select class="form-control institute" name="institute">
                     	<option value="Feni Computer Institute">Feni Computer Institute</option>
