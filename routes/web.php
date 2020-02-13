@@ -42,7 +42,61 @@ Route::get('/namta/{a}',function($a){
 })->where(['a' => '[0-9]+']);
 
 Route::get('/student',function(){
+	
 	return view('student');
 });
 
+Route::get('/test','Student@index');
+
+Route::get('/try',function(){
+	$a=DB::table('departmnet')->get();
+	echo "<pre>";
+	print_r($a);
+});
+
+Route::get('/try',function(){
+	$a=DB::table('departmnet')->get()->toArray();
+	echo "<pre>";
+	print_r($a);
+});
+
+Route::get('/try',function(){
+	$a=DB::table('departmnet')->first();
+	echo "<pre>";
+	print_r($a);
+});
+
+Route::get('/try',function(){
+	$a=DB::table('departmnet')->find(3);
+	echo "<pre>";
+	print_r($a);
+});
+
+Route::get('/try',function(){
+	$a=DB::table('departmnet')->where('department_name','Science')->get();
+	echo "<pre>";
+	print_r($a);
+});
+
+Route::get('/try',function(){
+	$a=DB::table('departmnet')->where('department_name','Science')->value('status');
+	echo "<pre>";
+	print_r($a);
+});
+
+Route::get('/try',function(){
+	$a=DB::table('departmnet')->pluck('department_name');
+	echo "<pre>";
+	print_r($a);
+});
+
+Route::get('/try',function(){
+	$a=DB::table('departmnet')->select('id','department_name','status')->where('status','Active')->get();
+	echo "<pre>";
+	print_r($a);
+});
+
+Route::get('/try','Department@data_group');
+
+Route::get('/try','Department@data_count');
 
