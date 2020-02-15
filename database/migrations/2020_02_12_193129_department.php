@@ -13,7 +13,7 @@ class Department extends Migration
      */
     public function up()
     {
-        Schema::create('departmnet',function (Blueprint $table){
+        Schema::create('department',function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('department_name',100);
             $table->string('description',100);

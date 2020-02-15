@@ -83,20 +83,11 @@ Route::get('/try',function(){
 	echo "<pre>";
 	print_r($a);
 });
-
-Route::get('/try',function(){
-	$a=DB::table('departmnet')->pluck('department_name');
-	echo "<pre>";
-	print_r($a);
-});
-
-Route::get('/try',function(){
-	$a=DB::table('departmnet')->select('id','department_name','status')->where('status','Active')->get();
-	echo "<pre>";
-	print_r($a);
-});
-
 Route::get('/try','Department@data_group');
 
 Route::get('/try','Department@data_count');
+
+Route::get('/try','Department@data_select');
+
+// Route::get('/try','Department@pluck');
 
