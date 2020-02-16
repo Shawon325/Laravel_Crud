@@ -36,9 +36,12 @@ class department extends Controller
      */
     public function store(Request $request)
     {
-        echo "<pre>";
-        $data = $request->all();
-        print_r($data);
+        department_model::create([
+            'department_name' => $request->department_name,
+            'description' => $request->description,
+            'status' => $request->status
+        ]);
+        echo "Success";
     }
 
     /**
