@@ -83,11 +83,5 @@ Route::get('/try',function(){
 	echo "<pre>";
 	print_r($a);
 });
-Route::get('/try','Department@data_group');
-
-Route::get('/try','Department@data_count');
-
-Route::get('/try','Department@data_select');
-
-// Route::get('/try','Department@pluck');
+Route::resource('department','department');
 
