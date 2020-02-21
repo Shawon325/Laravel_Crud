@@ -2,82 +2,47 @@
 
 @section('content')
 <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Department Datatable</h5>
-                                  <a href="{{route('department.create')}}"><button class="btn btn-success">Add New</button></a>
-                                  <br>
-                                  <br>
-                                <div class="table-responsive">
-                                    <table id="zero_config" class="table table-striped table-bordered">
-                                      
-                                        <thead>
-                                          <tr>
-                                            <th>Sl</th>
-                                            <th>Department Name</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          @php $sl=1;  @endphp
-                                          @foreach($data as $info)
-                                          <tr>
-                                            <td>{{$sl++}}</td>
-                                            <td>{{$info->department_name}}</td>
-                                            <td>{{$info->description}}</td>
-                                            <td>{{$info->status}}</td>
-                                          </tr>
-                                          @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+  @if($suucess=Session::get('Success'))
+  <div class="alert alert-info">{{$suucess}}</div>
+  @endif
+    <div class="card-body">
+        <h3 class="card-title">Department Datatable</h3>
+          <a href="{{route('department.create')}}" class="btn btn-primary pull-right">Add New</a>
+          <br>
+          <br>
+        <div class="table-responsive">
+            <table id="zero_config" class="table table-striped table-bordered">
+              
+                <thead>
+                  <tr>
+                    <th>Sl</th>
+                    <th>Department Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($data as $info)
+                  <tr>
+                    <td>{{$sl++}}</td>
+                    <td>{{$info->department_name}}</td>
+                    <td>{{$info->description}}</td>
+                    <td>{{$info->status}}</td>
+                    <td>
+                      <form method="post" action="{{route('department.destroy',$info->id)}}">
+                        <a class="btn btn-primary" href="{{route('department.edit',$info->id)}}">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are You Sure?')">Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+            </table>
+        </div>
 
-                            </div>
-                        </div>
-@endsection
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Teacher Information</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container">
-	<br>
-<a href="{{route('department.create')}}"><button class="btn btn-success">Add New</button></a>
-  <h2>Department Info</h2>           
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Sl</th>
-        <th>Department Name</th>
-        <th>Description</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-    	@php $sl=1;  @endphp
-    	@foreach($data as $info)
-      <tr>
-        <td>{{$sl++}}</td>
-        <td>{{$info->department_name}}</td>
-        <td>{{$info->description}}</td>
-        <td>{{$info->status}}</td>
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
+    </div>
 </div>
-
-</body>
-</html>
-
-
- -->
+@endsection

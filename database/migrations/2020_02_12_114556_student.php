@@ -16,6 +16,7 @@ class Student extends Migration
         Schema::create('student_info', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('student_name',100);
+            $table->string('department',100);
             $table->integer('student_roll');
             $table->string('father_name',100);
             $table->string('mother_name',100);

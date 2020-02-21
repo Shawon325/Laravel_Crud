@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\department_model;
+use App\Student;
 use Session;
-use validator;
 
-class department extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,9 @@ class department extends Controller
      */
     public function index()
     {
-        $info['sl'] = 1;
-        $info['data'] = department_model::orderBy('id' , 'desc')->get();
-        return view('department.index',$info);
+        $student['sl'] = 1;
+        $student['data'] = Student::orderBy('id' , 'desc')->get();
+        return view('student.index' , $student);
     }
 
     /**
@@ -28,7 +27,7 @@ class department extends Controller
      */
     public function create()
     {
-        return view('department.create');
+        return view('student.create');
     }
 
     /**
@@ -39,14 +38,17 @@ class department extends Controller
      */
     public function store(Request $request)
     {
-        $error=$request->validate([
-            'department_name' => 'required',
-            'description'     => 'required',
-            'status'          => 'required'
+        $student = $request->validate([
+            'student_name'  => 'required',
+            'department'    => 'required',
+            'student_roll'  => 'required|unique:student_info',
+            'father_name'   => 'required',
+            'mother_name'   => 'required',
+            'mobile_number' => 'required'
         ]);
-        department_model::create($request->all());
-        Session::flash('Success','New Data Updated Successfully');
-        return redirect()->route('department.index');
+        Student::create($request->all());
+        Session::flash('Success' , 'Data Inserted Successfully');
+        return redirect()->back();
     }
 
     /**
@@ -66,10 +68,9 @@ class department extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(department_model $data , $id)
+    public function edit($id)
     {
-        $data = department_model::find($id);
-        return view('department.edit')->with('department',$data);
+        //
     }
 
     /**
@@ -92,8 +93,8 @@ class department extends Controller
      */
     public function destroy($id)
     {
-        department_model::where('id',$id)->delete();
-        Session::flash('Success','SuccessFUlly Deleted');
-        return back();
+        Student::where('id',$id)->delete();
+        Session::flash('Success','Data Deleted Successfully');
+        return redirect()->back();
     }
 }

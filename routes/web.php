@@ -82,4 +82,6 @@ Route::get('/try',function(){
 	print_r($a);
 });
 Route::resource('department','department');
+Route::resource('student' , 'StudentController');
+Route::resource('teacher' , 'TeacherController');
 

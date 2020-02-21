@@ -230,7 +230,23 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('/')}}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Student </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="{{route('student.create')}}" class="sidebar-link"><i class="mdi mdi-account-box"></i><span class="hide-menu">Add Student</span></a></li>
+                                <li class="sidebar-item"><a href="{{url('student')}}" class="sidebar-link"><i class="mdi mdi-account-card-details"></i><span class="hide-menu"> Student List </span></a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Teacher </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="{{route('teacher.create')}}" class="sidebar-link"><i class="mdi mdi-account-box"></i><span class="hide-menu">Add Teacher</span></a></li>
+                                <li class="sidebar-item"><a href="{{url('teacher')}}" class="sidebar-link"><i class="mdi mdi-account-card-details"></i><span class="hide-menu"> Teacher List </span></a></li>
+                            </ul>
+                        </li>
+
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{('department')}}" aria-expanded="false"><i class="mdi mdi-briefcase"></i><span class="hide-menu">Department</span></a></li>
+                        
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Charts</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Widgets</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Tables</span></a></li>
@@ -341,13 +357,7 @@
     <script src="{{asset('dist/js/pages/chart/chart-page-init.js')}}"></script>
     <script src="{{asset('assets/extra-libs/multicheck/datatable-checkbox-init.js')}}"></script>
     <script src="{{asset('assets/extra-libs/multicheck/jquery.multicheck.js')}}"></script>
-    <script src="{{asset('assets/extra-libs/DataTables/datatables.min.js')}}"></script>
-    <script>
-        /****************************************
-         *       Basic Table                   *
-         ****************************************/
-        $('#zero_config').DataTable();
-    </script>
+    @yield('script')
 
 </body>
 
